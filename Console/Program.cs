@@ -10,21 +10,22 @@ namespace Console
     {
         static void Main(string[] args)
         {
-            CarManager car1 = new CarManager(new EfCarDal());
+            CarManager carManager = new CarManager(new EfCarDal());
 
+            //foreach (var car in car1.GetAll())
+            //{
+            //    // System.Console.WriteLine(car.Description);
+            //    System.Console.WriteLine
+            //        (
+            //        "{0}---{1}",
+            //         car.Description, car.ModelYear
+            //        );
 
-            car1.Add(new Car { BrandId = 1, ColorId = 1, DailyPrice = 10, Description = "qwerty", ModelYear = 2010 });
+            //}
 
-
-            foreach (var car in car1.GetAll())
+            foreach (var cars in carManager.GetCarDetails())
             {
-                // System.Console.WriteLine(car.Description);
-                System.Console.WriteLine
-                    (
-                    "{0}---{1}",
-                     car.Description, car.ModelYear
-                    );
-
+                System.Console.WriteLine(cars.CarId+"\t"+cars.BrandName + "\t" +cars.ColorName);
             }
 
         }

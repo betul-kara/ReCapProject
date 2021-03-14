@@ -10,9 +10,31 @@ namespace Console
     {
         static void Main(string[] args)
         {
+            //CarManager carManager = Core();
+
             CarManager carManager = new CarManager(new EfCarDal());
 
-            //foreach (var car in car1.GetAll())
+            var result = carManager.GetCarDetails();
+
+            if (result.Success == true)
+            {
+                foreach (var c in result.Data)
+                {
+                    System.Console.WriteLine(c.CarId + " " + c.BrandName);
+                }
+            }
+            else
+            {
+                System.Console.WriteLine(result.Message);
+            }
+        }
+
+
+        private static CarManager Core()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+
+            //foreach (var car in car.GetAll())
             //{
             //    // System.Console.WriteLine(car.Description);
             //    System.Console.WriteLine
@@ -23,13 +45,12 @@ namespace Console
 
             //}
 
-            foreach (var cars in carManager.GetCarDetails())
-            {
-                System.Console.WriteLine(cars.CarId+"\t"+cars.BrandName + "\t" +cars.ColorName);
-            }
+            //foreach (var cars in carManager.GetCarDetails())
+            //{
+            //    System.Console.WriteLine(cars.CarId + "\t" + cars.BrandName + "\t" + cars.ColorName);
+            //}
 
+            return carManager;
         }
-
-
     }
 }
